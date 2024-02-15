@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "qaguru-python-9-21"
+version = "0.1.0"
+description = ""
+authors = ["Alexey Tyukhteev <discofan@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^8.0.0"
+selene = "2.0.0rc8"
+allure-pytest = "^2.13.2"
+appium-python-client = "^3.1.1"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
