@@ -4,6 +4,8 @@ from appium.options.ios import XCUITestOptions
 from dotenv import load_dotenv
 from appium.options.android import UiAutomator2Options
 from selene import browser
+from appium import webdriver
+
 
 load_dotenv()
 user_name = os.environ.get('USER_NAME')
@@ -29,8 +31,7 @@ def mobile_management_android():
         }
     })
 
-    browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
-    browser.config.driver_options = options
+    browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=options)
 
     yield
 
@@ -56,8 +57,7 @@ def mobile_management_ios():
         }
     })
 
-    browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
-    browser.config.driver_options = options
+    browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=options)
 
     yield
 
