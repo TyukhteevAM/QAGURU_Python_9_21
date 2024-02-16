@@ -12,6 +12,8 @@ selene = "2.0.0rc8"
 allure-pytest = "^2.13.2"
 appium-python-client = "^3.1.1"
 python-dotenv = "^1.0.1"
+requests = "^2.31.0"
+pydantic = "^2.6.1"
 
 
 [build-system]
