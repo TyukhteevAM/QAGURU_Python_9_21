@@ -1,15 +1,12 @@
-import os
+import allure
 import pytest
 from appium.options.ios import XCUITestOptions
-from dotenv import load_dotenv
 from appium.options.android import UiAutomator2Options
 from selene import browser
 from appium import webdriver
 
-
-load_dotenv()
-user_name = os.environ.get('USER_NAME')
-password = os.environ.get('ACCESS_KEY')
+from settings import config
+from utils import attach_files
 
 
 @pytest.fixture(scope='function')
@@ -26,8 +23,8 @@ def mobile_management_android():
             "buildName": "browserstack-build-1",
             "sessionName": "BStack first_test",
 
-            "userName": user_name,
-            "accessKey": password
+            "userName": config.user_name,
+            "accessKey": config.access_key,
         }
     })
 
@@ -35,7 +32,13 @@ def mobile_management_android():
 
     yield
 
-    browser.quit()
+    attach_files.attach_screenshot()
+    session_id = browser.driver.session_id
+
+    with allure.step('Add attach_files'):
+        browser.quit()
+
+    attach_files.attach_bstack_video(session_id)
 
 
 @pytest.fixture(scope='function')
@@ -52,8 +55,8 @@ def mobile_management_ios():
             "buildName": "browserstack-build-1-2",
             "sessionName": "BStack first_test-1",
 
-            "userName": user_name,
-            "accessKey": password
+            "userName": config.user_name,
+            "accessKey": config.access_key,
         }
     })
 
@@ -61,4 +64,10 @@ def mobile_management_ios():
 
     yield
 
-    browser.quit()
+    attach_files.attach_screenshot()
+    session_id = browser.driver.session_id
+
+    with allure.step('Add attach_files'):
+        browser.quit()
+
+    attach_files.attach_bstack_video(session_id)
