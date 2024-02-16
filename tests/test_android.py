@@ -23,4 +23,5 @@ def test_android_search_wiki_kremlin(mobile_management_android):
         results = browser.all((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title'))
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Kremlin'))
+    with step('Open content'):
         results.first.click()
